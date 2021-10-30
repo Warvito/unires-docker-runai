@@ -14,7 +14,7 @@ scaling=1
 unified_rigid=1
 vx=1
 
-for i in {0..0}; do
+for i in {0..10}; do
   start=$((${i} * 100))
   stop=$(((${i} + 1) * 100))
   runai submit \
