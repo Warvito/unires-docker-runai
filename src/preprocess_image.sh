@@ -15,12 +15,11 @@ fov=${9}
 max_iter=${10}
 ids_filename=${11}
 pipeline_name=${12}
-prefix=${13}
-scaling=${14}
-start=${15}
-stop=${16}
-unified_rigid=${17}
-vx=${18}
+scaling=${13}
+start=${14}
+stop=${15}
+unified_rigid=${16}
+vx=${17}
 
 echo atlas_rigid ${atlas_rigid}
 echo bids ${bids}
@@ -34,7 +33,6 @@ echo fov ${fov}
 echo max_iter ${max_iter}
 echo ids_filename ${ids_filename}
 echo pipeline_name ${pipeline_name}
-echo prefix ${prefix}
 echo scaling ${scaling}
 echo start ${start}
 echo stop ${stop}
@@ -57,7 +55,6 @@ python3 /project/src/preprocess_image.py \
   --max_iter ${max_iter} \
   --ids_filename ${ids_filename} \
   --pipeline_name ${pipeline_name} \
-  --prefix ${prefix} \
   --scaling ${scaling} \
   --start ${start} \
   --stop ${stop} \

@@ -10,17 +10,16 @@ fov="head"
 max_iter=0
 ids_filename="/project/data/adni_subjects.tsv"
 pipeline_name="super-res"
-prefix=""
 scaling=1
 unified_rigid=1
 vx=1
 
-for i in {0..10}; do
+for i in {0..0}; do
   start=$((${i} * 100))
   stop=$(((${i} + 1) * 100))
   runai submit \
     --name unires-runai-${start}-${stop} \
-    --image 10.202.67.207:5000/wds20:clip-image \
+    --image 10.202.67.207:5000/wds20:unires-runai \
     --backoff-limit 0 \
     --gpu 1 \
     --cpu 1 \
@@ -29,8 +28,8 @@ for i in {0..10}; do
     --host-ipc \
     --project wds20 \
     --volume /nfs:/nfs \
-    --volume /nfs/home/wds20/datasets/NeuroRadKCH/derivatives:/derivatives \
-    --volume /nfs/home/wds20/projects/clinical_clip:/project \
+    --volume /nfs/home/wds20/datasets/ADNI-Dan/derivatives:/derivatives \
+    --volume /nfs/home/wds20/projects/unires-docker-runai:/project \
     --command -- bash /project/src/preprocess_image.sh \
     ${atlas_rigid} \
     ${bids} \
@@ -44,7 +43,6 @@ for i in {0..10}; do
     ${max_iter} \
     ${ids_filename} \
     ${pipeline_name} \
-    ${prefix} \
     ${scaling} \
     ${start} \
     ${stop} \
