@@ -59,6 +59,7 @@ def main(args):
         config = settings()
         config.atlas_rigid = bool(args.atlas_rigid)
         config.bids = bool(args.bids)
+        config.common_output = bool(args.common_output)
         config.crop = bool(args.crop)
         config.ct = bool(args.ct)
         config.dir_out = str(subject_dir)
@@ -68,6 +69,7 @@ def main(args):
         config.do_res_origin = bool(args.do_res_origin)
         config.fov = args.fov
         config.max_iter = args.max_iter
+        config.pow = bool(args.pow)
         config.prefix = args.prefix
         config.scaling = bool(args.scaling)
         config.unified_rigid = bool(args.unified_rigid)
@@ -94,6 +96,13 @@ if __name__ == "__main__":
         type=int,
         default=0,
         help="For adding a BIDS compatible space tag ('_space-unires_') (1=True, 0=False)",
+    )
+    parser.add_argument(
+        "--common_output",
+        type=int,
+        default=0,
+        help="Makes recons aligned with same grid, across subjects (1=True, 0=False)."
+             "Internally, it sets do_atlas_align=True, crop=True, and pow=256",
     )
     parser.add_argument(
         "--crop",
@@ -160,6 +169,12 @@ if __name__ == "__main__":
         type=str,
         default="",
         help="Prefix for reconstructed image(s)"
+    )
+    parser.add_argument(
+        "--pow",
+        type=int,
+        default=0,
+        help="Ensure output image dimensions are a power of two or three, with max dimensions pow"
     )
     parser.add_argument(
         "--scaling",
